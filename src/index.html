@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla App Template</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    
+
+    <section>
+      <h1 hidden>Search Picture</h1>
+    </section>
+
+    <form action="submit" class="js-search-form search-form">
+      <div class="form-group">
+        
+        <label for="city" class="label"></label>
+        <input
+          type="text"
+          name="picture"
+          class="search-input"
+          placeholder="Введіть назву картинки:"
+          autocomplete="off"
+          required
+        />
+          
+          <button class="search-button">Пошук</button>
+        </div>
+        
+      </div>
+      
+    </form>
+    
+    <ul class="js-list gallery"><span class="loader hide"></span></ul>
+    
+
+    <script type="module" src="./main.js"></script>
+    <script type="module" src="./js/pixabay-api.js"></script>
+    <script type="module" src="./js/render-functions.js"></script>
+  </body>
+</html>
