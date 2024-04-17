@@ -13,7 +13,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
   captionPosition:"bottom",
   captionDelay: 250
 });
-const list = document.querySelector(".js-list")
+const list = document.querySelector(".gallery")
 const searchForm = document.querySelector(".js-search-form");
 const loader = document.querySelector(".hide")
 const buttonLoad = document.querySelector(".buttonLoad")
@@ -35,10 +35,10 @@ searchForm.reset();
 
 try {
   
- const res = await searchPhoto (input, page);
- console.log("data",res);
+ const data = await searchPhoto (input, page);
+ 
      if (data.hits.length === 0) {
-      buttonLoad.hide = true;
+      buttonLoad.style.display = "none";
       loaderOff();
       iziToast.error({
         title: 'Oooops',
@@ -46,7 +46,7 @@ try {
         });
     } else { 
     
-  list.insertAdjacentHTML("beforeend",createMarkup(data.data.hits));
+  list.insertAdjacentHTML("beforeend",createMarkup(data.hits));
   lightbox.refresh();
   page += 1;
 }
@@ -65,9 +65,9 @@ try {
   }
 }
 
-// async  function nextPage (event) {
+async  function nextPage (event) {
 
-// }
+}
 
 function loaderOff (){
   loader.classList.add("hide")
