@@ -18,19 +18,20 @@ const searchForm = document.querySelector(".js-search-form");
 const loader = document.querySelector(".hide")
 const buttonLoad = document.querySelector(".buttonLoad")
 
-
+let page = 1;
 
 searchForm.addEventListener("submit", handleSubmit);
-function handleSubmit (event){
+async function handleSubmit (event){
 event.preventDefault();
 loader.classList.remove("hide");
 list.innerHTML="";
 const input = searchForm.elements.picture.value;
 searchForm.reset();
-searchPhoto (input)
+await searchPhoto (input, page)
 
   .then ((data)=>{
     if (data.hits.length === 0) {
+      buttonLoad.hide = true;
       loaderOff();
       iziToast.error({
         title: 'Error',
