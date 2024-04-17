@@ -16,6 +16,7 @@ const lightbox = new SimpleLightbox('.gallery a', {
 const list = document.querySelector(".js-list")
 const searchForm = document.querySelector(".js-search-form");
 const loader = document.querySelector(".hide")
+const buttonLoad = document.querySelector(".buttonLoad")
 
 
 
@@ -52,6 +53,10 @@ searchPhoto (input)
     message: 'Sorry, there are no images matching your search query. Please try again!'
     });
   })
+  .finally(()=>{
+    loaderOff();
+  }
+);
   
   function loaderOff (){
     loader.classList.add("hide")
