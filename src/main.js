@@ -21,15 +21,20 @@ const buttonLoad = document.querySelector(".buttonLoad")
 let page = 1;
 
 searchForm.addEventListener("submit", handleSubmit);
+buttonLoad.addEventListener("click", nextPage)
+
+
 async function handleSubmit (event){
 event.preventDefault();
 loader.classList.remove("hide");
 list.innerHTML="";
 const input = searchForm.elements.picture.value;
 searchForm.reset();
-await searchPhoto (input, page)
+page = 1;
+try {
+ const data = await searchPhoto (input, page);
 
-  .then ((data)=>{
+ 
     if (data.hits.length === 0) {
       buttonLoad.hide = true;
       loaderOff();
@@ -39,29 +44,31 @@ await searchPhoto (input, page)
         });
     } else 
    { 
-    // console.log("data",data);
-   
- 
+    
   list.insertAdjacentHTML("beforeend",createMarkup(data.hits));
-  lightbox.refresh();}
-})
+  lightbox.refresh();
+  page + 1;
+}
 
-  .catch((error) => {console.log("error",error);
+}
+  catch(error)  {
   
   loaderOff();
     iziToast.error({
     title: 'Error',
     message: 'Sorry, there are no images matching your search query. Please try again!'
     });
-  })
-  .finally(()=>{
+  }
+  finally {
     loaderOff();
   }
-);
-  
-  function loaderOff (){
-    loader.classList.add("hide")
-    
-  }
+}
 
+async  function nextPage (event) {
+
+}
+
+function loaderOff (){
+  loader.classList.add("hide")
+  
 }
