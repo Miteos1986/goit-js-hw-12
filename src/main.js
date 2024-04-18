@@ -17,6 +17,7 @@ const list = document.querySelector(".gallery")
 const searchForm = document.querySelector(".js-search-form");
 const loader = document.querySelector(".hide")
 const buttonLoad = document.querySelector(".buttonLoad")
+const card = document.querySelector(".gallery-item")
 
 let page = 1;
 let per_page = 15;
@@ -49,12 +50,12 @@ try {
       list.insertAdjacentHTML("beforeend",createMarkup(data.hits));
   lightbox.refresh();
   page += 1;
-  // const totalPages = Math.ceil(data.totalHits / per_page);
-// console.log(totalPages);
-//   if (page < totalPages) {
+  const totalPages = Math.ceil(data.totalHits / per_page);
+console.log(totalPages);
+  if (page < totalPages) {
     
       buttonLoad.hidden = false;
-    // }
+    }
    
 }
 
@@ -83,6 +84,11 @@ async  function nextPage (event) {
   list.insertAdjacentHTML("beforeend",createMarkup(data.hits));
   lightbox.refresh();
   page += 1;
+  
+  const cardHeight = card.getBoundingClientRect().height;
+
+  window.scrollBy(0, 2 * cardHeight)
+
   if (page >= totalPages) { 
     buttonLoad.style.display = "none";
     iziToast.show({

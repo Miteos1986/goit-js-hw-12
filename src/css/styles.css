@@ -62,18 +62,18 @@ color: white;
 }
 .gallery-item {
   border: 1px solid #808080;
-  width: 300px;
-  height: auto;
+  width: 360px;
+  height: 200px;
 }
 .gallery-link {
 }
 .gallery-img {
- width: 100%;
-  height: auto; 
+ width: 360px;
+  height: 152px; 
 }
 .gallery-list {
 
-width: 300px;
+width: 100%;
 height: auto;
 display: flex;
 flex-direction: row;
