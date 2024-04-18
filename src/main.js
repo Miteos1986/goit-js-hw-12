@@ -17,7 +17,6 @@ const list = document.querySelector(".gallery")
 const searchForm = document.querySelector(".js-search-form");
 const loader = document.querySelector(".hide")
 const buttonLoad = document.querySelector(".buttonLoad")
-const card = document.querySelector(".gallery-item")
 
 let page = 1;
 let per_page = 15;
@@ -42,8 +41,8 @@ try {
       buttonLoad.style.display = "none";
       loaderOff();
       iziToast.error({
-        title: 'Oooops',
-        message: 'Enter text'
+        title: 'Error',
+        message: 'Sorry, there are no images matching your search query. Please try again!'
         });
     } else { 
       
@@ -85,9 +84,13 @@ async  function nextPage (event) {
   lightbox.refresh();
   page += 1;
   
-  const cardHeight = card.getBoundingClientRect().height;
-
-  window.scrollBy(0, 2 * cardHeight)
+  const { height: cardHeight } = document
+      .querySelector('.gallery')
+      .firstElementChild.getBoundingClientRect();
+    window.scrollBy({
+      top: cardHeight * 2,
+      behavior: 'smooth',
+    });
 
   if (page >= totalPages) { 
     buttonLoad.style.display = "none";
