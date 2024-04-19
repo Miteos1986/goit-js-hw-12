@@ -52,10 +52,8 @@ try {
   const totalPages = Math.ceil(data.totalHits / per_page);
 console.log(totalPages);
   if (page < totalPages) {
-    
-      buttonLoad.hidden = false;
+          buttonLoad.hidden = false;
     }
-   
 }
 
 }
